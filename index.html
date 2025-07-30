@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦴</text></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Global Fossil Discovery - Explore Prehistoric Earth</title>
+    <meta name="description" content="Discover amazing fossils from around the world! Type any word to uncover incredible prehistoric specimens and build your personal paleontology collection." />
+    <meta name="keywords" content="fossils, paleontology, dinosaurs, prehistoric, discovery, collection, educational, interactive" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://fossil-discovery.netlify.app/" />
+    <meta property="og:title" content="Global Fossil Discovery - Explore Prehistoric Earth" />
+    <meta property="og:description" content="Discover amazing fossils from around the world! Type any word to uncover incredible prehistoric specimens and build your personal paleontology collection." />
+    <meta property="og:image" content="https://fossil-discovery.netlify.app/og-image.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://fossil-discovery.netlify.app/" />
+    <meta property="twitter:title" content="Global Fossil Discovery - Explore Prehistoric Earth" />
+    <meta property="twitter:description" content="Discover amazing fossils from around the world! Type any word to uncover incredible prehistoric specimens and build your personal paleontology collection." />
+    <meta property="twitter:image" content="https://fossil-discovery.netlify.app/og-image.png" />
+
+    <!-- Preload key resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Custom CSS animations for the background -->
+    <style>
+      @keyframes bounce-slow {
+        0%, 20%, 53%, 80%, 100% {
+          transform: translate3d(0, 0, 0);
+        }
+        40%, 43% {
+          transform: translate3d(0, -15px, 0);
+        }
+        70% {
+          transform: translate3d(0, -7px, 0);
+        }
+        90% {
+          transform: translate3d(0, -2px, 0);
+        }
+      }
+      
+      @keyframes spin-slow {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      
+      .animate-bounce-slow {
+        animation: bounce-slow 4s ease-in-out infinite;
+      }
+      
+      .animate-spin-slow {
+        animation: spin-slow 10s linear infinite;
+      }
+
+      /* Loading screen */
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #fef7ed, #fed7aa, #fecaca);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out;
+      }
+      
+      .loading-content {
+        text-align: center;
+      }
+      
+      .loading-fossil {
+        font-size: 4rem;
+        animation: bounce-slow 2s ease-in-out infinite;
+      }
+      
+      .loading-text {
+        margin-top: 1rem;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #92400e;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+      <div class="loading-content">
+        <div class="loading-fossil">🦴</div>
+        <div class="loading-text">Excavating fossils...</div>
+      </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="root"></div>
+    
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Remove loading screen after app loads -->
+    <script>
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const loadingScreen = document.getElementById('loading-screen');
+          if (loadingScreen) {
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+              loadingScreen.remove();
+            }, 500);
+          }
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>
